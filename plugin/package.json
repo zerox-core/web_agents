@@ -6,6 +6,9 @@
   "workspaces": [
     "products/plugin"
   ],
+  "dependencies": {
+    "@web-agents/local-core": "file:../"
+  },
   "engines": {
     "node": ">=24"
   },
