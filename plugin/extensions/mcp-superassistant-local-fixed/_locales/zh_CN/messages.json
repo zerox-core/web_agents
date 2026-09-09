@@ -1,0 +1,30 @@
+{
+  "extensionDescription": {
+    "description": "扩展描述",
+    "message": "web_Agent 本地 MCP 网页助手"
+  },
+  "extensionName": {
+    "description": "扩展名称",
+    "message": "web_Agent"
+  },
+  "greeting": {
+    "description": "问候语",
+    "message": "你好，我的名字是 $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "Web Agent"
+      }
+    }
+  },
+  "hello": {
+    "description": "占位示例",
+    "message": "你好 $1"
+  },
+  "loading": {
+    "message": "加载中..."
+  },
+  "toggleTheme": {
+    "message": "切换主题"
+  }
+}

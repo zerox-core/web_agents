@@ -1,0 +1,250 @@
+{
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "saurabh@mcpsuperassistant.ai"
+    }
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "content/index-main.iife.js"
+      ],
+      "matches": [
+        "*://*.perplexity.ai/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "js": [
+        "content/index-main.iife.js"
+      ],
+      "matches": [
+        "*://*.chat.openai.com/*",
+        "*://*.chatgpt.com/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "js": [
+        "content/index-main.iife.js",
+        "content/local-automation-bridge.js",
+        "content/grok-zh-localization.js"
+      ],
+      "matches": [
+        "*://*.grok.com/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "js": [
+        "content/index-main.iife.js",
+        "content/local-automation-bridge.js",
+        "content/grok-zh-localization.js"
+      ],
+      "matches": [
+        "*://*.x.com/*",
+        "*://*.twitter.com/*",
+        "*://*.x.com/i/grok*",
+        "*://*.twitter.com/i/grok*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "js": [
+        "content/index-main.iife.js"
+      ],
+      "matches": [
+        "*://*.gemini.google.com/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "js": [
+        "content/index-main.iife.js"
+      ],
+      "matches": [
+        "*://*.aistudio.google.com/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "js": [
+        "content/index-main.iife.js"
+      ],
+      "matches": [
+        "*://*.openrouter.ai/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "js": [
+        "content/index-main.iife.js"
+      ],
+      "matches": [
+        "*://*.chat.deepseek.com/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "js": [
+        "content/index-main.iife.js"
+      ],
+      "matches": [
+        "*://*.kagi.com/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "js": [
+        "content/index-main.iife.js"
+      ],
+      "matches": [
+        "*://*.t3.chat/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "js": [
+        "content/index-main.iife.js"
+      ],
+      "matches": [
+        "*://*.chat.mistral.ai/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "js": [
+        "content/index-main.iife.js"
+      ],
+      "matches": [
+        "*://*.github.com/*",
+        "*://*.copilot.github.com/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "js": [
+        "content/index-main.iife.js"
+      ],
+      "matches": [
+        "*://*.kimi.com/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "js": [
+        "content/index-main.iife.js"
+      ],
+      "matches": [
+        "*://*.doubao.com/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "js": [
+        "content/index-main.iife.js"
+      ],
+      "matches": [
+        "*://*.bigmodel.cn/*",
+        "*://*.chat.z.ai/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "js": [
+        "content/index-main.iife.js"
+      ],
+      "matches": [
+        "*://*.chat.qwen.ai/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "js": [
+        "content/web-agent-result-enhancer.js",
+        "content/web-agent-insert-fallback.js"
+      ],
+      "matches": [
+        "*://*.perplexity.ai/*",
+        "*://*.chat.openai.com/*",
+        "*://*.chatgpt.com/*",
+        "*://*.grok.com/*",
+        "*://*.x.com/*",
+        "*://*.twitter.com/*",
+        "*://*.gemini.google.com/*",
+        "*://*.aistudio.google.com/*",
+        "*://*.openrouter.ai/*",
+        "*://*.chat.deepseek.com/*",
+        "*://*.kagi.com/*",
+        "*://*.t3.chat/*",
+        "*://*.chat.mistral.ai/*",
+        "*://*.github.com/*",
+        "*://*.copilot.github.com/*",
+        "*://*.kimi.com/*",
+        "*://*.doubao.com/*",
+        "*://*.bigmodel.cn/*",
+        "*://*.chat.z.ai/*",
+        "*://*.chat.qwen.ai/*"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "default_locale": "zh_CN",
+  "description": "web_Agent 本地 MCP 网页助手",
+  "host_permissions": [
+    "http://127.0.0.1:3017/*",
+    "*://*.perplexity.ai/*",
+    "*://*.chat.openai.com/*",
+    "*://*.chatgpt.com/*",
+    "*://*.grok.com/*",
+    "*://*.x.com/*",
+    "*://*.twitter.com/*",
+    "*://*.gemini.google.com/*",
+    "*://*.aistudio.google.com/*",
+    "*://*.openrouter.ai/*",
+    "*://*.google-analytics.com/*",
+    "*://*.chat.deepseek.com/*",
+    "*://*.t3.chat/*",
+    "*://*.chat.mistral.ai/*",
+    "*://*.github.com/*",
+    "*://*.copilot.github.com/*",
+    "*://*.kimi.com/*",
+    "*://*.doubao.com/*",
+    "*://*.bigmodel.cn/*",
+    "*://*.chat.z.ai/*",
+    "*://*.chat.qwen.ai/*",
+    "http://127.0.0.1:3006/*"
+  ],
+  "icons": {
+    "128": "icon-128.png",
+    "16": "icon-16.png",
+    "34": "icon-34.png"
+  },
+  "manifest_version": 3,
+  "name": "web_Agent",
+  "permissions": [
+    "storage",
+    "clipboardWrite"
+  ],
+  "version": "1.0.2",
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "resources": [
+        "*.js",
+        "*.css",
+        "content/*.css",
+        "*.svg",
+        "icon-128.png",
+        "icon-34.png",
+        "icon-16.png"
+      ]
+    }
+  ]
+}

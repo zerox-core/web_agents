@@ -2,24 +2,25 @@
 
 # Web Agents
 
-Web Agents is the repository for the web_Agent browser extension product and the shared filesystem safety foundation. `main` publishes the shared foundation and `webagent` publishes the browser extension product; the two formal branches are developed, tested, and released independently. The multi-model roundtable workbench TableLLM has migrated to its own repository [zhuxice-ctrl/web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm), together with the full `tablellm` branch history and `tablellm-v*` tags.
+Web Agents is a single-branch repository hosting the web_Agent browser extension product and the shared filesystem safety foundation: the repository root of `main` is the shared foundation @web-agents/local-core, the `plugin/` directory holds the web_Agent browser extension product, and the two are stored on one branch, tested and released independently. The multi-model roundtable workbench TableLLM has migrated to its own repository [zhuxice-ctrl/web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm), together with the full `tablellm` branch history and `tablellm-v*` tags.
 
 ## Repository Structure
 
 | Formal branch | Current version | Responsibility | Core dependency |
 | --- | --- | --- | --- |
-| [`main`](https://github.com/zhuxice-ctrl/web_agents/tree/main) | `local-core 1.0.1` | Shared path, permission, transaction, and filesystem tool foundation | Standalone foundation |
-| [`webagent`](https://github.com/zhuxice-ctrl/web_agents/tree/webagent) | `web_Agent 1.0.2` | Browser extension, local filesystem MCP, and plugin gateway | `local-core 1.0.1` |
+| [`main`](https://github.com/zhuxice-ctrl/web_agents/tree/main) root | `local-core 1.0.1` | Shared path, permission, transaction, and filesystem tool foundation | Standalone foundation |
+| [`main`](https://github.com/zhuxice-ctrl/web_agents/tree/main) `plugin/` directory | `web_Agent 1.0.2` | Browser extension, local filesystem MCP, and plugin gateway | `local-core 1.0.1` |
 | Migrated → [web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm) | `TableLLM 1.0.1` | Multi-model roundtable UI, scheduler, and browser runtime (separate repository) | `local-core 1.0.0` |
 
 ```text
-main (Local Core)
-  └─ versioned dependency ─> webagent
+main
+  ├─ / (repository root) = @web-agents/local-core foundation
+  └─ plugin/ = web_Agent plugin (consumes Core through local-core-v* tags)
 ```
 
 The separate web_agent_tablellm repository (roundtable product) also consumes Core through the `local-core-v*` tags of this repository.
 
-The only permanent remote branches are `main` and `webagent`. Historical releases are retained through `local-core-v*` and `webagent-v*` tags instead of permanent version branches; `tablellm-v*` tags moved to the separate repository with the roundtable.
+The only permanent remote branch is `main`. Historical releases are retained through `local-core-v*` and `webagent-v*` tags instead of permanent version branches; `tablellm-v*` tags moved to the separate repository with the roundtable.
 
 ## Choosing a Branch
 
@@ -32,10 +33,10 @@ npm ci
 npm test
 ```
 
-For plugin development:
+For plugin development, work inside the `plugin/` directory:
 
 ```powershell
-git switch webagent
+cd plugin
 npm ci
 npm run start:plugin
 ```
@@ -140,8 +141,8 @@ The suite covers atomic writes, Windows paths, concurrency locks, permission tok
 - Minor releases may add exports or optional behavior.
 - Major releases may change permission or filesystem contracts.
 - Shared capabilities are tested on `main` before creating a `local-core-vX.Y.Z` tag.
-- The `webagent` branch and the `tablellm` branch of the web_agent_tablellm repository upgrade Core only through pinned tags and are never merged into each other.
-- Temporary feature branches are deleted after integration; only two remote branches remain permanent.
+- The `plugin/` directory and the `tablellm` branch of the web_agent_tablellm repository upgrade Core only through pinned tags and never share source directories.
+- Temporary feature branches are deleted after integration; the only permanent remote branch is `main`.
 - Never commit machine-specific absolute paths, permission allowlists, account data, tokens, or real session data.
 
 ## License

@@ -1,0 +1,20 @@
+{
+  "name": "webagent",
+  "version": "1.0.2",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "products/plugin"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start:plugin": "node products/plugin/services/start-plugin-services.mjs",
+    "check:boundaries": "node tools/check-product-boundaries.mjs",
+    "test:boundaries": "node --test tools/check-product-boundaries.test.mjs",
+    "test:plugin": "npm --workspace @web-agents/plugin-product test",
+    "build:plugin": "npm --workspace @web-agents/plugin-product run build",
+    "test": "npm run check:boundaries && npm run test:boundaries && npm run test:plugin && npm run build:plugin"
+  }
+}

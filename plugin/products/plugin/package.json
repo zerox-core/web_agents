@@ -1,0 +1,16 @@
+{
+  "name": "@web-agents/plugin-product",
+  "version": "1.0.2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:extension": "node --test tests/*.test.mjs",
+    "test:services": "node --test services/*.test.mjs",
+    "test:source": "node --test tests/source-release-boundary.test.mjs",
+    "test": "npm run test:extension && npm run test:services && npm run test:source",
+    "build": "node scripts/verify-unpacked-extension.mjs"
+  },
+  "dependencies": {
+    "@web-agents/local-core": "https://github.com/zhuxice-ctrl/web_agents/archive/refs/tags/local-core-v1.0.1.tar.gz"
+  }
+}

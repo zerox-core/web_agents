@@ -2,24 +2,25 @@
 
 # Web Agents
 
-Web Agents 是 web_Agent 插件产品与共享文件安全底座的仓库：`main` 提供共享文件安全底座，`webagent` 提供网页大模型浏览器插件，两个正式分支独立开发、独立测试、独立发布。多模型圆桌工作台 TableLLM 已迁移至独立仓库 [zhuxice-ctrl/web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm)，其 `tablellm` 分支完整历史与 `tablellm-v*` 标签一并迁移。
+Web Agents 是 web_Agent 插件产品与共享文件安全底座的单分支仓库：`main` 分支的根目录是共享底座 @web-agents/local-core，`plugin/` 目录是 web_Agent 浏览器插件产品，两者同分支存放、独立测试、独立发布。多模型圆桌工作台 TableLLM 已迁移至独立仓库 [zhuxice-ctrl/web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm)，其 `tablellm` 分支完整历史与 `tablellm-v*` 标签一并迁移。
 
 ## 仓库结构
 
 | 正式分支 | 当前版本 | 主要职责 | Core 依赖 |
 | --- | --- | --- | --- |
-| [`main`](https://github.com/zhuxice-ctrl/web_agents/tree/main) | `local-core 1.0.1` | 路径、权限、事务和文件工具共享底座 | 独立底座 |
-| [`webagent`](https://github.com/zhuxice-ctrl/web_agents/tree/webagent) | `web_Agent 1.0.2` | 浏览器扩展、本地文件系统 MCP、插件网关 | `local-core 1.0.1` |
+| [`main`](https://github.com/zhuxice-ctrl/web_agents/tree/main) 根目录 | `local-core 1.0.1` | 路径、权限、事务和文件工具共享底座 | 独立底座 |
+| [`main`](https://github.com/zhuxice-ctrl/web_agents/tree/main) 的 `plugin/` 目录 | `web_Agent 1.0.2` | 浏览器扩展、本地文件系统 MCP、插件网关 | `local-core 1.0.1` |
 | 已迁移 → [web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm) | `TableLLM 1.0.1` | 多模型圆桌界面、调度器和浏览器运行时（独立仓库） | `local-core 1.0.0` |
 
 ```text
-main (Local Core)
-  └─ versioned dependency ─> webagent
+main
+  ├─ /（仓库根目录）= @web-agents/local-core 共享底座
+  └─ plugin/ = web_Agent 插件（通过 local-core-v* 标签引用 Core）
 ```
 
 独立仓库 web_agent_tablellm（圆桌产品）同样通过本仓库的 `local-core-v*` 标签引用 Core。
 
-仓库永久保留的远端分支只有 `main` 与 `webagent` 两条。历史版本通过 `local-core-v*`、`webagent-v*` 标签保存，不使用永久版本分支；`tablellm-v*` 标签已随圆桌迁移至独立仓库。
+仓库永久保留的远端分支只有 `main` 一条。历史版本通过 `local-core-v*`、`webagent-v*` 标签保存，不使用永久版本分支；`tablellm-v*` 标签已随圆桌迁移至独立仓库。
 
 ## 如何选择分支
 
@@ -32,10 +33,10 @@ npm ci
 npm test
 ```
 
-开发插件时切换到：
+开发插件进入 `plugin/` 目录：
 
 ```powershell
-git switch webagent
+cd plugin
 npm ci
 npm run start:plugin
 ```
@@ -140,8 +141,8 @@ npm test
 - 次版本可以增加导出或可选行为。
 - 主版本可以修改权限或文件系统契约。
 - 共享能力先在 `main` 完成测试，再创建 `local-core-vX.Y.Z` 标签。
-- `webagent` 分支与 web_agent_tablellm 仓库的 `tablellm` 分支只通过固定标签升级 Core，不互相合并。
-- 临时功能分支合入后删除，长期远端分支始终只有两条。
+- `plugin/` 与 web_agent_tablellm 仓库的 `tablellm` 分支只通过固定标签升级 Core，产品间不共享源码目录。
+- 临时功能分支合入后删除，长期远端分支始终只有 main 一条。
 - 禁止提交本机绝对路径、授权白名单、账号信息、令牌或真实会话数据。
 
 ## 许可证

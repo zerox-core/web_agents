@@ -1,0 +1,30 @@
+{
+   "extensionDescription": {
+      "description": "Extension description",
+      "message": "web_Agent local MCP web assistant"
+   },
+   "extensionName": {
+      "description": "Extension name",
+      "message": "web_Agent"
+   },
+   "greeting": {
+      "description": "Greeting message",
+      "message": "Hello, My name is $NAME$",
+      "placeholders": {
+         "name": {
+            "content": "$1",
+            "example": "John Doe"
+         }
+      }
+   },
+   "hello": {
+      "description": "Placeholder example",
+      "message": "Hello $1"
+   },
+   "loading": {
+      "message": "Loading..."
+   },
+   "toggleTheme": {
+      "message": "Toggle theme"
+   }
+}
