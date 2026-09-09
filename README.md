@@ -2,7 +2,7 @@
 
 # Web Agents
 
-Web Agents 是一个采用多分支产品模型的本地 AI 工具仓库：`main` 提供共享文件安全底座，`webagent` 提供网页大模型浏览器插件，`tablellm` 提供多模型圆桌工作台。三个正式分支独立开发、独立测试、独立发布，插件和圆桌不会互相合并。
+Web Agents 是 web_Agent 插件产品与共享文件安全底座的仓库：`main` 提供共享文件安全底座，`webagent` 提供网页大模型浏览器插件，两个正式分支独立开发、独立测试、独立发布。多模型圆桌工作台 TableLLM 已迁移至独立仓库 [zhuxice-ctrl/web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm)，其 `tablellm` 分支完整历史与 `tablellm-v*` 标签一并迁移。
 
 ## 仓库结构
 
@@ -10,15 +10,16 @@ Web Agents 是一个采用多分支产品模型的本地 AI 工具仓库：`main
 | --- | --- | --- | --- |
 | [`main`](https://github.com/zhuxice-ctrl/web_agents/tree/main) | `local-core 1.0.1` | 路径、权限、事务和文件工具共享底座 | 独立底座 |
 | [`webagent`](https://github.com/zhuxice-ctrl/web_agents/tree/webagent) | `web_Agent 1.0.2` | 浏览器扩展、本地文件系统 MCP、插件网关 | `local-core 1.0.1` |
-| [`tablellm`](https://github.com/zhuxice-ctrl/web_agents/tree/tablellm) | `TableLLM 1.0.1` | 多模型圆桌界面、调度器和浏览器运行时 | `local-core 1.0.0` |
+| 已迁移 → [web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm) | `TableLLM 1.0.1` | 多模型圆桌界面、调度器和浏览器运行时（独立仓库） | `local-core 1.0.0` |
 
 ```text
 main (Local Core)
-  ├─ versioned dependency ─> webagent
-  └─ versioned dependency ─> tablellm
+  └─ versioned dependency ─> webagent
 ```
 
-仓库永久保留的远端分支只有这三条。历史版本通过 `local-core-v*`、`webagent-v*` 和 `tablellm-v*` 标签保存，不使用永久版本分支。
+独立仓库 web_agent_tablellm（圆桌产品）同样通过本仓库的 `local-core-v*` 标签引用 Core。
+
+仓库永久保留的远端分支只有 `main` 与 `webagent` 两条。历史版本通过 `local-core-v*`、`webagent-v*` 标签保存，不使用永久版本分支；`tablellm-v*` 标签已随圆桌迁移至独立仓库。
 
 ## 如何选择分支
 
@@ -39,10 +40,11 @@ npm ci
 npm run start:plugin
 ```
 
-开发圆桌时切换到：
+开发圆桌请克隆独立仓库：
 
 ```powershell
-git switch tablellm
+git clone https://github.com/zhuxice-ctrl/web_agent_tablellm.git
+cd web_agent_tablellm
 npm ci
 npm run start:roundtable
 ```
@@ -55,13 +57,13 @@ npm run start:roundtable
 | --- | --- | --- | --- |
 | Local Core | `1.0.1` | - | `local-core-v1.0.1` |
 | web_Agent | `1.0.2` | `1.0.1` | `webagent-v1.0.2` |
-| TableLLM | `1.0.1` | `1.0.0` | `tablellm-v1.0.1` |
+| TableLLM | `1.0.1` | `1.0.0` | `tablellm-v1.0.1`（[web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm)） |
 
 产品通过不可变标签引用 Core。Core 发布新版本后，插件和圆桌分别升级依赖并运行各自完整测试，不要求同时升级。
 
 ## Local Core
 
-`@web-agents/local-core` 是两个产品共享的文件系统安全与事务基础。它负责：
+`@web-agents/local-core` 是 web_Agent 插件与 TableLLM 圆桌共享的文件系统安全与事务基础。它负责：
 
 - 规范化 Windows 路径、扩展路径前缀和大小写。
 - 解析真实物理路径，并阻止目录连接点绕过写入边界。
@@ -138,8 +140,8 @@ npm test
 - 次版本可以增加导出或可选行为。
 - 主版本可以修改权限或文件系统契约。
 - 共享能力先在 `main` 完成测试，再创建 `local-core-vX.Y.Z` 标签。
-- `webagent` 和 `tablellm` 只通过固定标签升级 Core，不互相合并。
-- 临时功能分支合入后删除，长期远端分支始终只有三条。
+- `webagent` 分支与 web_agent_tablellm 仓库的 `tablellm` 分支只通过固定标签升级 Core，不互相合并。
+- 临时功能分支合入后删除，长期远端分支始终只有两条。
 - 禁止提交本机绝对路径、授权白名单、账号信息、令牌或真实会话数据。
 
 ## 许可证

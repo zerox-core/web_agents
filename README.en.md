@@ -2,7 +2,7 @@
 
 # Web Agents
 
-Web Agents is a local AI tooling repository organized as three independent product branches. `main` publishes the shared filesystem safety foundation, `webagent` publishes the browser extension product, and `tablellm` publishes the multi-model roundtable workbench. The three formal branches are developed, tested, and released independently; the plugin and roundtable products are never merged into each other.
+Web Agents is the repository for the web_Agent browser extension product and the shared filesystem safety foundation. `main` publishes the shared foundation and `webagent` publishes the browser extension product; the two formal branches are developed, tested, and released independently. The multi-model roundtable workbench TableLLM has migrated to its own repository [zhuxice-ctrl/web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm), together with the full `tablellm` branch history and `tablellm-v*` tags.
 
 ## Repository Structure
 
@@ -10,15 +10,16 @@ Web Agents is a local AI tooling repository organized as three independent produ
 | --- | --- | --- | --- |
 | [`main`](https://github.com/zhuxice-ctrl/web_agents/tree/main) | `local-core 1.0.1` | Shared path, permission, transaction, and filesystem tool foundation | Standalone foundation |
 | [`webagent`](https://github.com/zhuxice-ctrl/web_agents/tree/webagent) | `web_Agent 1.0.2` | Browser extension, local filesystem MCP, and plugin gateway | `local-core 1.0.1` |
-| [`tablellm`](https://github.com/zhuxice-ctrl/web_agents/tree/tablellm) | `TableLLM 1.0.1` | Multi-model roundtable UI, scheduler, and browser runtime | `local-core 1.0.0` |
+| Migrated → [web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm) | `TableLLM 1.0.1` | Multi-model roundtable UI, scheduler, and browser runtime (separate repository) | `local-core 1.0.0` |
 
 ```text
 main (Local Core)
-  ├─ versioned dependency ─> webagent
-  └─ versioned dependency ─> tablellm
+  └─ versioned dependency ─> webagent
 ```
 
-These are the only permanent remote branches. Historical releases are retained through `local-core-v*`, `webagent-v*`, and `tablellm-v*` tags instead of permanent version branches.
+The separate web_agent_tablellm repository (roundtable product) also consumes Core through the `local-core-v*` tags of this repository.
+
+The only permanent remote branches are `main` and `webagent`. Historical releases are retained through `local-core-v*` and `webagent-v*` tags instead of permanent version branches; `tablellm-v*` tags moved to the separate repository with the roundtable.
 
 ## Choosing a Branch
 
@@ -39,10 +40,11 @@ npm ci
 npm run start:plugin
 ```
 
-For roundtable development:
+For roundtable development, clone the separate repository:
 
 ```powershell
-git switch tablellm
+git clone https://github.com/zhuxice-ctrl/web_agent_tablellm.git
+cd web_agent_tablellm
 npm ci
 npm run start:roundtable
 ```
@@ -55,13 +57,13 @@ Use separate working directories for different products. Repeatedly switching th
 | --- | --- | --- | --- |
 | Local Core | `1.0.1` | - | `local-core-v1.0.1` |
 | web_Agent | `1.0.2` | `1.0.1` | `webagent-v1.0.2` |
-| TableLLM | `1.0.1` | `1.0.0` | `tablellm-v1.0.1` |
+| TableLLM | `1.0.1` | `1.0.0` | `tablellm-v1.0.1` ([web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm)) |
 
 Products consume immutable Core tags. After a new Core release, the plugin and roundtable upgrade and test independently; they do not have to upgrade at the same time.
 
 ## Local Core
 
-`@web-agents/local-core` is the filesystem safety and transaction foundation shared by both products. It owns:
+`@web-agents/local-core` is the filesystem safety and transaction foundation shared by the web_Agent plugin and the TableLLM roundtable. It owns:
 
 - Windows path normalization, extended path prefixes, and case handling.
 - Physical real-path resolution and junction-safe mutation boundaries.
@@ -138,8 +140,8 @@ The suite covers atomic writes, Windows paths, concurrency locks, permission tok
 - Minor releases may add exports or optional behavior.
 - Major releases may change permission or filesystem contracts.
 - Shared capabilities are tested on `main` before creating a `local-core-vX.Y.Z` tag.
-- `webagent` and `tablellm` upgrade Core only through pinned tags and are never merged into each other.
-- Temporary feature branches are deleted after integration; only three remote branches remain permanent.
+- The `webagent` branch and the `tablellm` branch of the web_agent_tablellm repository upgrade Core only through pinned tags and are never merged into each other.
+- Temporary feature branches are deleted after integration; only two remote branches remain permanent.
 - Never commit machine-specific absolute paths, permission allowlists, account data, tokens, or real session data.
 
 ## License
