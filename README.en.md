@@ -212,7 +212,7 @@ Do not run the plugin together with an older service using `3006/3017`. The laun
 - Current version: `1.0.2`.
 - Release tag: `webagent-v1.0.2`.
 - Shared foundation: `@web-agents/local-core@1.0.1`, pinned to `local-core-v1.0.1`.
-- The roundtable product lives on the independent `tablellm` branch; the two products are never merged.
+- The roundtable product has migrated to the separate repository [zhuxice-ctrl/web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm); the two products are never merged.
 
 ## License
 
