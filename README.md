@@ -8,8 +8,8 @@ Web Agents 是 web_Agent 插件产品与共享文件安全底座的单分支仓�
 
 | 正式分支 | 当前版本 | 主要职责 | Core 依赖 |
 | --- | --- | --- | --- |
-| [`main`](https://github.com/zhuxice-ctrl/web_agents/tree/main) 根目录 | `local-core 1.0.1` | 路径、权限、事务和文件工具共享底座 | 独立底座 |
-| [`main`](https://github.com/zhuxice-ctrl/web_agents/tree/main) 的 `plugin/` 目录 | `web_Agent 1.0.2` | 浏览器扩展、本地文件系统 MCP、插件网关 | `local-core 1.0.1` |
+| [`main`](https://github.com/zhuxice-ctrl/web_agents/tree/main) 根目录 | `local-core 1.1.0` | 路径、权限、事务和文件工具共享底座 | 独立底座 |
+| [`main`](https://github.com/zhuxice-ctrl/web_agents/tree/main) 的 `plugin/` 目录 | `web_Agent 1.0.2` | 浏览器扩展、本地文件系统 MCP、插件网关 | `local-core 1.1.0` |
 | 已迁移 → [web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm) | `TableLLM 1.0.1` | 多模型圆桌界面、调度器和浏览器运行时（独立仓库） | `local-core 1.0.0` |
 
 ```text
@@ -56,8 +56,8 @@ npm run start:roundtable
 
 | 产品 | 产品版本 | 固定 Core 版本 | 发布标签 |
 | --- | --- | --- | --- |
-| Local Core | `1.0.1` | - | `local-core-v1.0.1` |
-| web_Agent | `1.0.2` | `1.0.1` | `webagent-v1.0.2` |
+| Local Core | `1.1.0` | - | `local-core-v1.1.0` |
+| web_Agent | `1.0.2` | `1.1.0` | `webagent-v1.0.2` |
 | TableLLM | `1.0.1` | `1.0.0` | `tablellm-v1.0.1`（[web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm)） |
 
 产品通过不可变标签引用 Core。Core 发布新版本后，插件和圆桌分别升级依赖并运行各自完整测试，不要求同时升级。
@@ -71,8 +71,8 @@ npm run start:roundtable
 - 对相同文件或目录子树的修改进行并发锁定。
 - 生成、批准、拒绝和消费一次性或任务级权限。
 - 执行原子写入、备份、事务提交、幂等恢复和冲突保护回滚。
-- 提供带权限元数据和审计记录的文件系统工具。
-- 提供受权限控制的单文件 `delete_file`，但不开放递归目录删除。
+- 提供带权限元数据和审计记录的文件系统工具，并提供受权限控制的单文件 `delete_file`，但不开放递归目录删除。
+- 提供共 42 个受权限控制的工具：文件读写与搜索、待办清单、网页抓取（来源白名单加一次性授权）、工作区信息、开发环境体检、Node/Python/Java 运行、安卓设备操作、Git 工作流（看状态/暂存/提交自动，推送需授权）、开发项目登记、后台长任务（启动/查看/读日志/取消）、本地开发服务器管理、大文件分块传输。
 
 Core 不包含浏览器界面、模型网页适配器、HTTP 服务、工作区选择界面或产品运行时。
 
@@ -85,7 +85,7 @@ Core 不包含浏览器界面、模型网页适配器、HTTP 服务、工作区�
 ```json
 {
   "dependencies": {
-    "@web-agents/local-core": "https://github.com/zhuxice-ctrl/web_agents/archive/refs/tags/local-core-v1.0.1.tar.gz"
+    "@web-agents/local-core": "https://github.com/zhuxice-ctrl/web_agents/archive/refs/tags/local-core-v1.1.0.tar.gz"
   }
 }
 ```
@@ -133,7 +133,7 @@ npm ci
 npm test
 ```
 
-测试覆盖原子写入、Windows 路径、并发锁、权限令牌、真实路径、工具元数据、文件删除、事务恢复和产品依赖隔离。
+测试覆盖原子写入、Windows 路径、并发锁、权限令牌、真实路径、工具元数据、文件删除、事务恢复、产品依赖隔离，以及待办清单、网页抓取授权门控、大文件分块传输、Git 工作流和后台长任务等新工具的行为。
 
 ## 发布与开发规则
 

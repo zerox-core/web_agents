@@ -6,7 +6,7 @@ import test from "node:test";
 
 import { checkProductBoundaries } from "./check-product-boundaries.mjs";
 
-const coreDependency = "https://github.com/zhuxice-ctrl/web_agents/archive/refs/tags/local-core-v1.0.1.tar.gz";
+const coreDependency = "https://github.com/zhuxice-ctrl/web_agents/archive/refs/tags/local-core-v1.1.0.tar.gz";
 
 async function write(root, relative, content) {
   const target = path.join(root, relative);

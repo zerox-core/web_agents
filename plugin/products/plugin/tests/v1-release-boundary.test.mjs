@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 const testDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(testDir, "../../..");
 const extensionRoot = path.join(repoRoot, "extensions/mcp-superassistant-local-fixed");
-const coreDependency = "https://github.com/zhuxice-ctrl/web_agents/archive/refs/tags/local-core-v1.0.1.tar.gz";
+const coreDependency = "https://github.com/zhuxice-ctrl/web_agents/archive/refs/tags/local-core-v1.1.0.tar.gz";
 
 test("webagent v1 contains only the plugin product", async () => {
   await assert.rejects(fs.access(path.join(repoRoot, "products/roundtable")), { code: "ENOENT" });

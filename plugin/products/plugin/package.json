@@ -11,6 +11,6 @@
     "build": "node scripts/verify-unpacked-extension.mjs"
   },
   "dependencies": {
-    "@web-agents/local-core": "https://github.com/zhuxice-ctrl/web_agents/archive/refs/tags/local-core-v1.0.1.tar.gz"
+    "@web-agents/local-core": "https://github.com/zhuxice-ctrl/web_agents/archive/refs/tags/local-core-v1.1.0.tar.gz"
   }
 }

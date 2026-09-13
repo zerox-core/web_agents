@@ -8,8 +8,8 @@ Web Agents is a single-branch repository hosting the web_Agent browser extension
 
 | Formal branch | Current version | Responsibility | Core dependency |
 | --- | --- | --- | --- |
-| [`main`](https://github.com/zhuxice-ctrl/web_agents/tree/main) root | `local-core 1.0.1` | Shared path, permission, transaction, and filesystem tool foundation | Standalone foundation |
-| [`main`](https://github.com/zhuxice-ctrl/web_agents/tree/main) `plugin/` directory | `web_Agent 1.0.2` | Browser extension, local filesystem MCP, and plugin gateway | `local-core 1.0.1` |
+| [`main`](https://github.com/zhuxice-ctrl/web_agents/tree/main) root | `local-core 1.1.0` | Shared path, permission, transaction, and filesystem tool foundation | Standalone foundation |
+| [`main`](https://github.com/zhuxice-ctrl/web_agents/tree/main) `plugin/` directory | `web_Agent 1.0.2` | Browser extension, local filesystem MCP, and plugin gateway | `local-core 1.1.0` |
 | Migrated → [web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm) | `TableLLM 1.0.1` | Multi-model roundtable UI, scheduler, and browser runtime (separate repository) | `local-core 1.0.0` |
 
 ```text
@@ -56,8 +56,8 @@ Use separate working directories for different products. Repeatedly switching th
 
 | Product | Product version | Pinned Core version | Release tag |
 | --- | --- | --- | --- |
-| Local Core | `1.0.1` | - | `local-core-v1.0.1` |
-| web_Agent | `1.0.2` | `1.0.1` | `webagent-v1.0.2` |
+| Local Core | `1.1.0` | - | `local-core-v1.1.0` |
+| web_Agent | `1.0.2` | `1.1.0` | `webagent-v1.0.2` |
 | TableLLM | `1.0.1` | `1.0.0` | `tablellm-v1.0.1` ([web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm)) |
 
 Products consume immutable Core tags. After a new Core release, the plugin and roundtable upgrade and test independently; they do not have to upgrade at the same time.
@@ -71,8 +71,8 @@ Products consume immutable Core tags. After a new Core release, the plugin and r
 - Concurrent mutation locks for exact paths and directory subtrees.
 - Creation, approval, rejection, and consumption of one-time or task-scoped permissions.
 - Atomic writes, backups, transaction commits, idempotent recovery, and conflict-aware rollback.
-- Filesystem tools with explicit permission metadata and audit records.
-- Permission-gated single-file `delete_file`, without recursive directory deletion.
+- Filesystem tools with explicit permission metadata and audit records, plus permission-gated single-file `delete_file` without recursive directory deletion.
+- Forty-two permission-gated tools in total: file read/search, todo lists, web fetch (origin allowlist plus one-time approval), workspace context, development environment inspection, Node/Python/Java runners, Android device operations, git workflow (status/stage/commit automatic, push approval-gated), development project registry, background long-running tasks (start/inspect/read logs/cancel), local dev server management, and chunked large-file transfer.
 
 Core contains no browser UI, provider website adapter, HTTP server, workspace selection UI, or product runtime.
 
@@ -85,7 +85,7 @@ Pin the dependency to a release tag:
 ```json
 {
   "dependencies": {
-    "@web-agents/local-core": "https://github.com/zhuxice-ctrl/web_agents/archive/refs/tags/local-core-v1.0.1.tar.gz"
+    "@web-agents/local-core": "https://github.com/zhuxice-ctrl/web_agents/archive/refs/tags/local-core-v1.1.0.tar.gz"
   }
 }
 ```
@@ -133,7 +133,7 @@ npm ci
 npm test
 ```
 
-The suite covers atomic writes, Windows paths, concurrency locks, permission tokens, real paths, tool metadata, file deletion, transaction recovery, and product dependency isolation.
+The suite covers atomic writes, Windows paths, concurrency locks, permission tokens, real paths, tool metadata, file deletion, transaction recovery, product dependency isolation, and the behavior of the newer tools such as todo lists, web-fetch approval gating, chunked transfer, git workflow, and background tasks.
 
 ## Release and Development Rules
 
