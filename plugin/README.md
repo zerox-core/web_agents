@@ -209,8 +209,8 @@ npm run build:plugin
 ## 版本与分支
 
 - 正式分支：`webagent`。
-- 当前版本：`1.0.2`。
-- 发布标签：`webagent-v1.0.2`。
+- 当前版本：`1.0.3`。
+- 发布标签：`webagent-v1.0.3`。
 - 共享底座：`@web-agents/local-core@1.0.1`，固定到 `local-core-v1.0.1` 标签。
 - 圆桌产品已迁移至独立仓库 [zhuxice-ctrl/web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm)；两个产品不互相合并。
 

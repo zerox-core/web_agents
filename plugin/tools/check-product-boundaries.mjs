@@ -42,7 +42,7 @@ export async function checkProductBoundaries({ repoRoot }) {
 
   const rootPackage = JSON.parse(await fs.readFile(path.join(root, "package.json"), "utf8"));
   const pluginPackage = JSON.parse(await fs.readFile(path.join(pluginRoot, "package.json"), "utf8"));
-  if (rootPackage.name !== "webagent" || rootPackage.version !== "1.0.2") {
+  if (rootPackage.name !== "webagent" || rootPackage.version !== "1.0.3") {
     violations.push({ file: "package.json", rule: "invalid-product-version" });
   }
   if (pluginPackage.dependencies?.["@web-agents/local-core"] !== CORE_DEPENDENCY) {
@@ -53,7 +53,7 @@ export async function checkProductBoundaries({ repoRoot }) {
     path.join(root, "extensions/mcp-superassistant-local-fixed/manifest.json"),
     "utf8"
   ));
-  if (manifest.version !== "1.0.2" || /roundtable/i.test(JSON.stringify(manifest))) {
+  if (manifest.version !== "1.0.3" || /roundtable/i.test(JSON.stringify(manifest))) {
     violations.push({ file: "extensions/mcp-superassistant-local-fixed/manifest.json", rule: "invalid-manifest-boundary" });
   }
 

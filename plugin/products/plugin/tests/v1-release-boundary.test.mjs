@@ -20,8 +20,8 @@ test("webagent v1 pins the independent local core release", async () => {
   const pluginPackage = JSON.parse(await fs.readFile(path.join(repoRoot, "products/plugin/package.json"), "utf8"));
 
   assert.equal(rootPackage.name, "webagent");
-  assert.equal(rootPackage.version, "1.0.2");
-  assert.equal(pluginPackage.version, "1.0.2");
+  assert.equal(rootPackage.version, "1.0.3");
+  assert.equal(pluginPackage.version, "1.0.3");
   assert.equal(pluginPackage.dependencies["@web-agents/local-core"], coreDependency);
   assert.doesNotMatch(JSON.stringify(rootPackage.scripts), /roundtable|test:core/i);
 });
@@ -31,7 +31,7 @@ test("webagent v1 manifest is product-scoped", async () => {
   const background = await fs.readFile(path.join(extensionRoot, "background.js"), "utf8");
 
   assert.equal(manifest.name, "web_Agent");
-  assert.equal(manifest.version, "1.0.2");
+  assert.equal(manifest.version, "1.0.3");
   assert.doesNotMatch(JSON.stringify(manifest), /roundtable/i);
   assert.doesNotMatch(background, /roundtable-background/i);
   assert.equal(manifest.permissions.includes("tabs"), false);

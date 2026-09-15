@@ -2,7 +2,7 @@
 
 The plugin product contains the normal browser extension experience and its local filesystem and permission gateway services. It does not start or package the roundtable workbench.
 
-Version `1.0.2` depends on the independently versioned `local-core-v1.0.1` release and contains no vendored core or legacy extension copy.
+Version `1.0.3` depends on the independently versioned `local-core-v1.1.0` release and contains no vendored core or legacy extension copy.
 
 ## Commands
 

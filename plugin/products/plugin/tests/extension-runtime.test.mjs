@@ -33,7 +33,7 @@ test("local fixed MCP extension loads the Grok automation sidecar after its inpu
   assert.ok(manifest.host_permissions.includes("*://*.doubao.com/*"));
   assert.equal(manifest.default_locale, "zh_CN");
   assert.equal(manifest.name, "web_Agent");
-  assert.equal(manifest.version, "1.0.2");
+  assert.equal(manifest.version, "1.0.3");
 });
 
 test("Grok automation sidecar uses the typed gateway without adding a replacement overlay", async () => {

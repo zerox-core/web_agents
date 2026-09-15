@@ -31,7 +31,7 @@ test("rejected popup extension source has been removed", async () => {
 test("active unpacked extension contains the expected main entries", async () => {
   const manifest = JSON.parse(await fs.readFile(path.join(extensionDir, "manifest.json"), "utf8"));
   assert.equal(manifest.name, "web_Agent");
-  assert.equal(manifest.version, "1.0.2");
+  assert.equal(manifest.version, "1.0.3");
   await Promise.all([
     fs.access(path.join(extensionDir, "background.js")),
     fs.access(path.join(extensionDir, "content/index-main.iife.js")),

@@ -17,14 +17,14 @@ async function write(root, relative, content) {
 async function fixture(t) {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), "webagent-v1-boundary-"));
   t.after(() => fs.rm(root, { recursive: true, force: true }));
-  await write(root, "package.json", JSON.stringify({ name: "webagent", version: "1.0.2" }));
+  await write(root, "package.json", JSON.stringify({ name: "webagent", version: "1.0.3" }));
   await write(root, "products/plugin/package.json", JSON.stringify({
     dependencies: { "@web-agents/local-core": coreDependency },
   }));
   await write(root, "products/plugin/index.mjs", 'import "@web-agents/local-core/paths";');
   await write(root, "extensions/mcp-superassistant-local-fixed/manifest.json", JSON.stringify({
     name: "web_Agent",
-    version: "1.0.2",
+    version: "1.0.3",
   }));
   return root;
 }

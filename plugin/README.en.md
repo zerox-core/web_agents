@@ -209,8 +209,8 @@ Do not run the plugin together with an older service using `3006/3017`. The laun
 ## Versions and Branches
 
 - Formal branch: `webagent`.
-- Current version: `1.0.2`.
-- Release tag: `webagent-v1.0.2`.
+- Current version: `1.0.3`.
+- Release tag: `webagent-v1.0.3`.
 - Shared foundation: `@web-agents/local-core@1.0.1`, pinned to `local-core-v1.0.1`.
 - The roundtable product has migrated to the separate repository [zhuxice-ctrl/web_agent_tablellm](https://github.com/zhuxice-ctrl/web_agent_tablellm); the two products are never merged.
 
